@@ -2,32 +2,60 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameLoop: IExecute
+namespace Asteroids
 {
-    private List<IExecute> _listExecutes = new List<IExecute>();
-
-    public void Add(IExecute _execute)
+    public class GameLoop : MonoBehaviour
     {
-        if (!_listExecutes.Contains(_execute))
-        {
-            _listExecutes.Add(_execute);
-        }
-    }
+        private readonly List<IExecute> _listExecutes = new List<IExecute>();
+        private readonly List<IFixExecute> _listFixExecutes = new List<IFixExecute>();
 
-    public void Remove(IExecute _execute)
-    {
-        if(_listExecutes.Contains(_execute))
+        public void AddExecute(IExecute _execute)
         {
-            _listExecutes.Remove(_execute);
+            if (!_listExecutes.Contains(_execute))
+            {
+                _listExecutes.Add(_execute);
+            }
         }
-    }
 
-    public void Execute()
-    {
-        for(int i = 0; i < _listExecutes.Count; i++)
+        public void RemoveExecute(IExecute _execute)
         {
-            _listExecutes[i].Execute();
+            if (_listExecutes.Contains(_execute))
+            {
+                _listExecutes.Remove(_execute);
+            }
         }
-    }
 
+        public void AddFixExecute(IFixExecute _execute)
+        {
+            if (!_listFixExecutes.Contains(_execute))
+            {
+                _listFixExecutes.Add(_execute);
+            }
+        }
+
+        public void RemoveFixExecute(IFixExecute _execute)
+        {
+            if (_listFixExecutes.Contains(_execute))
+            {
+                _listFixExecutes.Remove(_execute);
+            }
+        }
+
+        public void Update()
+        {
+            for (int i = 0; i < _listExecutes.Count; i++)
+            {
+                _listExecutes[i].Execute();
+            }
+        }
+
+        public void FixedUpdate()
+        {
+            for (int i = 0; i < _listFixExecutes.Count; i++)
+            {
+                _listFixExecutes[i].FixExecute();
+            }
+        }
+
+    }
 }
