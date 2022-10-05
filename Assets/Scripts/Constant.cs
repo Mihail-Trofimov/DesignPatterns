@@ -11,6 +11,6 @@ namespace Asteroids
 
         public const int PLAYER_DAMAGE = 10;
 
-        public const string BLASTER_NAME = "PayerBlaster";
+        public const string POOL_PLAYER_BLASTER_NAME = "[PoolPlayerBlaster]";
     }
 }

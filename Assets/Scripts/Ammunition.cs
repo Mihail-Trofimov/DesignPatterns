@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -8,6 +9,9 @@ namespace Asteroids
     {
         [SerializeField] private int DamageDealt;
         public Rigidbody2D RigidBody { get; private set; }
+
+        public delegate void Action(Ammunition ammunition);
+        public event Action disableEvent;
 
         private void Awake()
         {
@@ -26,19 +30,14 @@ namespace Asteroids
         private IEnumerator DisableObjectFromTimer()
         {
             yield return new WaitForSeconds(2.5f);
-            MakeInactive();
-        }
-
-        private void MakeInactive()
-        {
-            Destroy(gameObject);
+            disableEvent.Invoke(this);
         }
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
             IDamage heatPoint = collision.GetComponent<Unit>();
             heatPoint.Damage(DamageDealt);
-            MakeInactive();
+            disableEvent.Invoke(this);
         }
 
     }
