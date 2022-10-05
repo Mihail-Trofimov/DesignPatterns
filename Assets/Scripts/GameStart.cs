@@ -1,10 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Asteroids
 {
-    public class GameStart : MonoBehaviour
+    public sealed class GameStart : MonoBehaviour
     {
 
         private GameLoop _gameLoop;
@@ -23,6 +21,7 @@ namespace Asteroids
             _input = new InputController(_player, _camera);
             _gameLoop.AddExecute(_input);
             _gameLoop.AddFixExecute(_input);
+            _gameLoop.AddExecute(_player);
         }
 
     }

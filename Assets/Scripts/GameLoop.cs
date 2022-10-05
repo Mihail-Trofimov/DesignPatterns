@@ -1,10 +1,9 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace Asteroids
 {
-    public class GameLoop : MonoBehaviour
+    public sealed class GameLoop : MonoBehaviour
     {
         private readonly List<IExecute> _listExecutes = new List<IExecute>();
         private readonly List<IFixExecute> _listFixExecutes = new List<IFixExecute>();

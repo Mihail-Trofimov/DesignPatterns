@@ -10,12 +10,14 @@ namespace Asteroids
 
         private readonly PlayerMovement _playerMovement;
         private readonly Transform _playerTransform;
+        private readonly Weapon _playerWeapon;
         private readonly Camera _camera;
 
         public InputController(Player player, Camera camera)
         {
             _playerTransform = player.transform;
             _playerMovement = player.Movement;
+            _playerWeapon = player.Weapon;
             _camera = camera;
         }
 
@@ -34,6 +36,11 @@ namespace Asteroids
             if (Input.GetKeyUp(KeyCode.LeftShift))
             {
                 _playerMovement.RemoveAcceleration();
+            }
+
+            if (Input.GetButton(Constant.FIRE1))
+            {
+                _playerWeapon.Shoot();
             }
         }
 

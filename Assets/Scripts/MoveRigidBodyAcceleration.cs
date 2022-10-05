@@ -20,5 +20,6 @@ namespace Asteroids
         {
             Speed -= _acceleration;
         }
+
     }
 }

@@ -4,9 +4,13 @@ namespace Asteroids
     {
         public const string HORIZONTAL = "Horizontal";
         public const string VERTICAL = "Vertical";
+        public const string FIRE1 = "Fire1";
 
         public const string PLAYER = "Prefabs/Player";
         public const string GAME_LOOP = "Prefabs/GameLoop";
 
+        public const int PLAYER_DAMAGE = 10;
+
+        public const string BLASTER_NAME = "PayerBlaster";
     }
 }
