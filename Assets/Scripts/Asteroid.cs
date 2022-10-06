@@ -4,7 +4,6 @@ using UnityEngine;
 
 namespace Asteroids
 {
-    //[RequireComponent(typeof(Animator))]
     [RequireComponent(typeof(Rigidbody2D))]
     public class Asteroid : Unit
     {
@@ -12,7 +11,7 @@ namespace Asteroids
         [SerializeField] private int _maxHealthPoint;
         [SerializeField] private int _force;
         [SerializeField] private Transform _body;
-
+        [SerializeField] private int _damageDealt;
         private Rigidbody2D _rigidBody;
 
         public override void Demolition()
@@ -22,8 +21,6 @@ namespace Asteroids
 
         private void Awake()
         {
-            Animator animator = GetComponent<Animator>();
-            animator.speed = _speedRotate;
             Health = new Health(_maxHealthPoint);
             _rigidBody = GetComponent<Rigidbody2D>();
         }
@@ -31,6 +28,16 @@ namespace Asteroids
         public void AddForce(Vector3 _direction)
         {
             _rigidBody.AddForce(_direction * _force, ForceMode2D.Impulse);
+        }
+
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            if (collision.tag == "Player")
+            {
+                IDamage heatPoint = collision.GetComponent<Unit>();
+                heatPoint.Damage(_damageDealt);
+                Demolition();
+            }
         }
     }
 }

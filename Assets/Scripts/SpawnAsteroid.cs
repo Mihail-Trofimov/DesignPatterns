@@ -9,24 +9,34 @@ namespace Asteroids
         [SerializeField] private Asteroid[] _prefabsArray;
         [SerializeField] private Transform[] _spawnPointsArray;
         [SerializeField] private Transform[] _targetPointsArray;
+        [SerializeField] private float _timerFrom;
+        [SerializeField] private float _timerTo;
+        private float _timer = 2;
         private IFactory<Asteroid> _factory;
+        
+        private Transform _parent;
+        
 
         private void Awake()
         {
             _factory = new FactoryAsteroid();
-            Spawn();
-            Spawn();
-            Spawn();
+            _parent = new GameObject(Constant.NAME_ASTEROIDS).transform;
         }
 
-        public void Execute() 
-        { 
-            
+        public void Execute()
+        {
+            if(_timer<=0)
+            { 
+                _timer = Random.Range(_timerFrom, _timerTo);
+                Spawn();
+            }
+            _timer -= Time.deltaTime;
         }
 
         private void Spawn()
         {
             Asteroid asteroid = _factory.Create(RandomPrefab());
+            asteroid.transform.SetParent(_parent);
             Vector3 point = RandomPoint(_spawnPointsArray);
             asteroid.transform.position = point;
             Vector3 target = RandomPoint(_targetPointsArray);

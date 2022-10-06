@@ -11,10 +11,12 @@ namespace Asteroids
             Camera camera = reference.MainCamera;
             InputController input = new InputController(player, camera);
             SpawnAsteroid spawner = reference.SpawnerAsteroid;
-
             GameLoop gameLoop = reference.GameLoop;
+
             gameLoop.AddExecute(input);
             gameLoop.AddExecute(player);
+            gameLoop.AddExecute(spawner);
+
             gameLoop.AddFixExecute(input);
         }
     }

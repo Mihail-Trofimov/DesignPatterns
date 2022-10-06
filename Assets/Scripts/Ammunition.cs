@@ -7,11 +7,17 @@ namespace Asteroids
     [RequireComponent(typeof(Rigidbody2D))]
     public sealed class Ammunition : MonoBehaviour
     {
-        [SerializeField] private int DamageDealt;
+        [SerializeField] private int _damageDealt;
         public Rigidbody2D RigidBody { get; private set; }
 
         public delegate void Action(Ammunition ammunition);
         public event Action disableEvent;
+        private float _lifeTime = 2.5f;
+
+        public void SetLifeTime(float lifeTime)
+        {
+            _lifeTime = lifeTime;
+        }
 
         private void Awake()
         {
@@ -29,14 +35,14 @@ namespace Asteroids
 
         private IEnumerator DisableObjectFromTimer()
         {
-            yield return new WaitForSeconds(2.5f);
+            yield return new WaitForSeconds(_lifeTime);
             disableEvent.Invoke(this);
         }
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
             IDamage heatPoint = collision.GetComponent<Unit>();
-            heatPoint.Damage(DamageDealt);
+            heatPoint.Damage(_damageDealt);
             disableEvent.Invoke(this);
         }
 

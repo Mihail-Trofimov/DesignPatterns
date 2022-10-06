@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Asteroids
 {
-    public abstract class Unit : MonoBehaviour, IUnit, IDamage
+    public abstract class Unit : MonoBehaviour, IDamage
     {
         public Health Health { get; protected set; }
 
