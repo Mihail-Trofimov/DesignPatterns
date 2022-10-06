@@ -4,25 +4,18 @@ namespace Asteroids
 {
     public sealed class GameStart : MonoBehaviour
     {
-
-        private GameLoop _gameLoop;
-        private Player _player;
-        private Camera _camera;
-        private InputController _input;
-        private Reference _reference;
-
         private void Awake()
         {
-            _reference = new Reference();
-            _player = _reference.Player;
-            _camera = _reference.MainCamera;
-            _gameLoop = _reference.GameLoop;
+            Reference reference = new Reference();
+            Player player = reference.Player;
+            Camera camera = reference.MainCamera;
+            InputController input = new InputController(player, camera);
+            SpawnAsteroid spawner = reference.SpawnerAsteroid;
 
-            _input = new InputController(_player, _camera);
-            _gameLoop.AddExecute(_input);
-            _gameLoop.AddFixExecute(_input);
-            _gameLoop.AddExecute(_player);
+            GameLoop gameLoop = reference.GameLoop;
+            gameLoop.AddExecute(input);
+            gameLoop.AddExecute(player);
+            gameLoop.AddFixExecute(input);
         }
-
     }
 }

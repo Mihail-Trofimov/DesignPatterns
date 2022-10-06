@@ -11,15 +11,14 @@ namespace Asteroids
         private float _timerReloaded = 0f;
         private readonly AmmunitionPool _pool;
 
-
-        public Weapon(Transform launcher, float force, float reloadTime, Ammunition prefab)
+        public Weapon(string rootName, Transform launcher, float force, float reloadTime, Ammunition prefab)
         {
             _launcher = launcher;
             _force = force;
             _reloadTime = reloadTime;
             const int defaultPoolSize = 20;
             const int maxPoolSize = 30;
-            _pool = new AmmunitionPool(Constant.POOL_PLAYER_BLASTER_NAME, prefab, OnTakeFromPool, defaultPoolSize, maxPoolSize);
+            _pool = new AmmunitionPool(rootName, prefab, OnTakeFromPool, defaultPoolSize, maxPoolSize);
         }
 
         public void Execute()

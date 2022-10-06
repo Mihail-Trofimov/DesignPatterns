@@ -6,11 +6,14 @@ namespace Asteroids
         public const string VERTICAL = "Vertical";
         public const string FIRE1 = "Fire1";
 
-        public const string PLAYER = "Prefabs/Player";
-        public const string GAME_LOOP = "Prefabs/GameLoop";
+        public const string PREFAB_PLAYER = "Prefabs/Player";
+        public const string PREFAB_GAME_LOOP = "Prefabs/GameLoop";
+        public const string PREFAB_SPAWN_ASTEROID = "Prefabs/SpawnerAsteroid";
+        //public const string PREFAB_ASTEROID_1 = "Prefabs/Asteroid_1";
+        //public const string PREFAB_ASTEROID_2 = "Prefabs/Asteroid_2";
 
         public const int PLAYER_DAMAGE = 10;
 
-        public const string POOL_PLAYER_BLASTER_NAME = "[PoolPlayerBlaster]";
+        public const string POOL_NAME_PLAYER_BLASTER = "[PoolPlayerBlaster]";
     }
 }

@@ -25,7 +25,7 @@ namespace Asteroids
             PlayerRotation _rotation = new PlayerRotation(transform);
             MoveRigidBodyAcceleration _move = new MoveRigidBodyAcceleration(_rigidBody, _speed, _acceleration);
             Movement = new PlayerMovement(_rotation, _move);
-            Weapon = new Weapon(_launcher, _ammunitionAcceleration, _weaponReloadTime, _ammunitionPrefab);
+            Weapon = new Weapon(Constant.POOL_NAME_PLAYER_BLASTER, _launcher, _ammunitionAcceleration, _weaponReloadTime, _ammunitionPrefab);
             Health = new Health(100);
         }
 
