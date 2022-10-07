@@ -1,41 +1,39 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+
 
 namespace Asteroids
 {
-    public class SpawnAsteroid : MonoBehaviour, IExecute
+    public sealed class SpawnerAsteroid : ISpawner
     {
-        [SerializeField] private Asteroid[] _prefabsArray;
-        [SerializeField] private Transform[] _spawnPointsArray;
-        [SerializeField] private Transform[] _targetPointsArray;
-        [SerializeField] private float _timerFrom;
-        [SerializeField] private float _timerTo;
-        private float _timer = 2;
-        private IFactory<Asteroid> _factory;
-        
-        private Transform _parent;
-        
+        private readonly Asteroid[] _prefabsArray;
+        private readonly Transform[] _spawnPointsArray;
+        private readonly Transform[] _targetPointsArray;
+        private readonly IFactory<Asteroid> _factory;
+        private readonly Transform _parent;
+        private readonly GameLoop _gameLoop;
 
-        private void Awake()
+        public SpawnerAsteroid(GameLoop gameLoop, Asteroid[] prefabsArray, Transform[] spawnPointsArray, Transform[] targetPointsArray)
         {
+            _gameLoop = gameLoop;
+            _prefabsArray = prefabsArray;
+            _spawnPointsArray = spawnPointsArray;
+            _targetPointsArray = targetPointsArray;
             _factory = new FactoryAsteroid();
             _parent = new GameObject(Constant.NAME_ASTEROIDS).transform;
         }
 
-        public void Execute()
+        public void DestroyUnit(Unit unit)
         {
-            if(_timer<=0)
-            { 
-                _timer = Random.Range(_timerFrom, _timerTo);
-                Spawn();
-            }
-            _timer -= Time.deltaTime;
+            unit.destroyEvent -= DestroyUnit;
+            _gameLoop.RemoveExecute(unit);
+            Object.Destroy(unit.gameObject);
         }
 
-        private void Spawn()
+        public void Spawn()
         {
             Asteroid asteroid = _factory.Create(RandomPrefab());
+            asteroid.destroyEvent += DestroyUnit;
+            _gameLoop.AddExecute(asteroid);
             asteroid.transform.SetParent(_parent);
             Vector3 point = RandomPoint(_spawnPointsArray);
             asteroid.transform.position = point;

@@ -43,7 +43,7 @@ namespace Asteroids
         {
             IDamage heatPoint = collision.GetComponent<Unit>();
             heatPoint.Damage(_damageDealt);
-            disableEvent.Invoke(this);
+            disableEvent?.Invoke(this);
         }
 
     }

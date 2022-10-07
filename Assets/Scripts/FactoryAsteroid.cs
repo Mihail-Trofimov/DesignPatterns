@@ -10,7 +10,6 @@ namespace Asteroids
             Asteroid prefab = Resources.Load<Asteroid>(path);
             Asteroid unit = Create(prefab);
             return unit;
-
         }
 
         public Asteroid Create(Asteroid prefab)

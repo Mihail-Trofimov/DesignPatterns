@@ -3,7 +3,7 @@ using UnityEngine;
 namespace Asteroids
 {
     [RequireComponent(typeof(Rigidbody2D))]
-    public sealed class Player : Unit, IExecute
+    public sealed class Player : Unit
     {
         [SerializeField] private int _maxHealthPoint;
 
@@ -19,6 +19,8 @@ namespace Asteroids
         public PlayerMovement Movement { get; private set; }
         public Weapon Weapon { get; private set; }
 
+        public override event Action destroyEvent;
+
         private void Awake()
         {
             Rigidbody2D _rigidBody = GetComponent<Rigidbody2D>();
@@ -31,10 +33,10 @@ namespace Asteroids
 
         public override void Demolition()
         {
-            Debug.Log("Game Over");
+            destroyEvent.Invoke(this);
         }
 
-        public void Execute()
+        public override void Execute()
         {
             Weapon.Execute();
         }

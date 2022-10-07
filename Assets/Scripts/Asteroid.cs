@@ -1,11 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Asteroids
 {
     [RequireComponent(typeof(Rigidbody2D))]
-    public class Asteroid : Unit
+    public class Asteroid : Unit, IRotate
     {
         [SerializeField] private float _speedRotate;
         [SerializeField] private int _maxHealthPoint;
@@ -14,9 +12,11 @@ namespace Asteroids
         [SerializeField] private int _damageDealt;
         private Rigidbody2D _rigidBody;
 
+        public override event Action destroyEvent;
+
         public override void Demolition()
         {
-            Destroy(gameObject);
+            destroyEvent?.Invoke(this);
         }
 
         private void Awake()
@@ -39,5 +39,16 @@ namespace Asteroids
                 Demolition();
             }
         }
+
+        public override void Execute()
+        {
+            Rotate();
+        }
+
+        public void Rotate()
+        {
+            _body.transform.Rotate(0f, 0f, _speedRotate * Time.deltaTime);
+        }
+
     }
 }

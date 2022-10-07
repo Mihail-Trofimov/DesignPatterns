@@ -8,7 +8,7 @@ namespace Asteroids
         private Player _player;
         private Camera _mainCamera;
         private GameLoop _gameLoop;
-        private SpawnAsteroid _spawnAsteroid;
+        private AsteroidSpawn _spawnAsteroid;
 
         public Player Player
         {
@@ -48,13 +48,13 @@ namespace Asteroids
             }
         }
 
-        public SpawnAsteroid SpawnerAsteroid
+        public AsteroidSpawn SpawnerAsteroid
         {
             get
             {
                 if (_gameLoop == null)
                 {
-                    SpawnAsteroid spawnAsteroid = Resources.Load<SpawnAsteroid>(Constant.PREFAB_SPAWN_ASTEROID);
+                    AsteroidSpawn spawnAsteroid = Resources.Load<AsteroidSpawn>(Constant.PREFAB_SPAWN_ASTEROID);
                     _spawnAsteroid = Object.Instantiate(spawnAsteroid);
                 }
                 return _spawnAsteroid;
