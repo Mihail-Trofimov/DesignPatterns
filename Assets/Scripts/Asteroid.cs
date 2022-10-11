@@ -3,7 +3,7 @@ using UnityEngine;
 namespace Asteroids
 {
     [RequireComponent(typeof(Rigidbody2D))]
-    public sealed class Asteroid : Unit, IRotate
+    public class Asteroid : Unit, IRotate
     {
         [SerializeField] private float _speedRotate;
         [SerializeField] private int _maxHealthPoint;
@@ -32,7 +32,7 @@ namespace Asteroids
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            if (collision.tag == Constant.TAG_PLAYER)
+            if (collision.tag == "Player")
             {
                 IDamage heatPoint = collision.GetComponent<Unit>();
                 heatPoint.Damage(_damageDealt);

@@ -53,9 +53,10 @@ MonoBehaviour:
   _speed: 5
   _acceleration: 5
   _launcher: {fileID: 550616967566781343}
-  _ammunitionAcceleration: 100
-  _weaponReloadTime: 0.12
+  _ammunitionAcceleration: 60
+  _weaponReloadTime: 0.02
   _ammunitionPrefab: {fileID: 1284662513751690037, guid: 5df89067d7eb49d47af2e7b01c461a9f, type: 3}
+  _ammunitionLifeTime: 3.5
 --- !u!50 &2991127961551946894
 Rigidbody2D:
   serializedVersion: 4

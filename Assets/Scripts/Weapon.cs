@@ -2,26 +2,26 @@ using UnityEngine;
 
 namespace Asteroids
 {
-    public sealed class Weapon : IWeapon, IExecute
+    public sealed class Weapon : IWeapon, IFixExecute
     {
         private readonly Transform _launcher;
         private readonly float _force;
         private readonly float _reloadTime;
         private bool _isReloaded = false;
         private float _timerReloaded = 0f;
-        private readonly Pool<Ammunition> _pool;
+        private readonly AmmunitionPool _pool;
 
-        public Weapon(string rootName, Transform launcher, float force, float reloadTime, Ammunition prefab)
+        public Weapon(string rootName, Transform launcher, float force, float reloadTime, Ammunition prefab, float lifeTime)
         {
             _launcher = launcher;
             _force = force;
             _reloadTime = reloadTime;
             const int defaultPoolSize = 20;
             const int maxPoolSize = 30;
-            _pool = new Pool<Ammunition>(rootName, prefab, OnTakeFromPool, defaultPoolSize, maxPoolSize);
+            _pool = new AmmunitionPool(rootName, prefab, OnTakeFromPool, defaultPoolSize, maxPoolSize, lifeTime);
         }
 
-        public void Execute()
+        public void FixExecute()
         {
             if (!_isReloaded)
             {

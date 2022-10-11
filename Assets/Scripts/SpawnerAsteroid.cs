@@ -1,5 +1,6 @@
 using UnityEngine;
 
+
 namespace Asteroids
 {
     public sealed class SpawnerAsteroid : ISpawner

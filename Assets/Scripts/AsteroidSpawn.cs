@@ -1,10 +1,11 @@
+using System;
 using System.Data;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 namespace Asteroids
 {
-    public sealed class AsteroidSpawn : MonoBehaviour, IExecute
+    public class AsteroidSpawn : MonoBehaviour, IExecute
     {
         [SerializeField] private Asteroid[] _prefabsArray;
         [SerializeField] private Transform[] _spawnPointsArray;

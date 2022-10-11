@@ -22,6 +22,7 @@ namespace Asteroids
             gameLoop.AddFixExecute(input);
 
             gameLoop.AddExecute(player);
+            gameLoop.AddFixExecute(player);
 
         }
     }

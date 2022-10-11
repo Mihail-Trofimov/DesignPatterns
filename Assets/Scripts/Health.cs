@@ -1,3 +1,5 @@
+using UnityEngine;
+
 namespace Asteroids
 {
     public sealed class Health : IDamage

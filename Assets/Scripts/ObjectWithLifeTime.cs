@@ -1,9 +1,9 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Asteroids
 {
-    public delegate void DisableAction<T>(T gameObject) where T : MonoBehaviour;
     public abstract class ObjectWithLifeTime<T> : MonoBehaviour where T : MonoBehaviour
     {
         [SerializeField] private float _lifeTime;
