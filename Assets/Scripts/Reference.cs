@@ -16,8 +16,7 @@ namespace Asteroids
             {
                 if (_player == null)
                 {
-                    Player player = Resources.Load<Player>(Constant.PREFAB_PLAYER);
-                    _player = Object.Instantiate(player);
+                    _player = Factory.Create<Player>(Constant.PREFAB_PLAYER);
                 }
                 return _player;
             }
@@ -41,8 +40,7 @@ namespace Asteroids
             {
                 if (_gameLoop == null)
                 {
-                    GameLoop gameLoop = Resources.Load<GameLoop>(Constant.PREFAB_GAME_LOOP);
-                    _gameLoop = Object.Instantiate(gameLoop);
+                    _gameLoop = Factory.Create<GameLoop>(Constant.PREFAB_GAME_LOOP);
                 }
                 return _gameLoop;
             }
@@ -54,8 +52,7 @@ namespace Asteroids
             {
                 if (_gameLoop == null)
                 {
-                    AsteroidSpawn spawnAsteroid = Resources.Load<AsteroidSpawn>(Constant.PREFAB_SPAWN_ASTEROID);
-                    _spawnAsteroid = Object.Instantiate(spawnAsteroid);
+                    _spawnAsteroid = Factory.Create<AsteroidSpawn>(Constant.PREFAB_SPAWN_ASTEROID);
                 }
                 return _spawnAsteroid;
             }

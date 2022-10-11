@@ -8,7 +8,6 @@ namespace Asteroids
         private readonly Asteroid[] _prefabsArray;
         private readonly Transform[] _spawnPointsArray;
         private readonly Transform[] _targetPointsArray;
-        private readonly IFactory<Asteroid> _factory;
         private readonly Transform _parent;
         private readonly GameLoop _gameLoop;
 
@@ -18,7 +17,6 @@ namespace Asteroids
             _prefabsArray = prefabsArray;
             _spawnPointsArray = spawnPointsArray;
             _targetPointsArray = targetPointsArray;
-            _factory = new FactoryAsteroid();
             _parent = new GameObject(Constant.NAME_ASTEROIDS).transform;
         }
 
@@ -31,7 +29,7 @@ namespace Asteroids
 
         public void Spawn()
         {
-            Asteroid asteroid = _factory.Create(RandomPrefab());
+            Asteroid asteroid = Factory.Create<Asteroid>(RandomPrefab());
             asteroid.destroyEvent += DestroyUnit;
             _gameLoop.AddExecute(asteroid);
             asteroid.transform.SetParent(_parent);

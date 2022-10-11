@@ -14,13 +14,16 @@ namespace Asteroids
             GameController gameController = new GameController(player);
 
             GameLoop gameLoop = reference.GameLoop;
-            spawner.Initialization(gameLoop);
 
-            gameLoop.AddExecute(input);
-            gameLoop.AddExecute(player);
+            spawner.Initialization(gameLoop);
             gameLoop.AddExecute(spawner);
 
+            gameLoop.AddExecute(input);
             gameLoop.AddFixExecute(input);
+
+            gameLoop.AddExecute(player);
+            gameLoop.AddFixExecute(player);
+
         }
     }
 }

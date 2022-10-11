@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Asteroids
 {
-    public sealed class Weapon : IWeapon, IExecute
+    public sealed class Weapon : IWeapon, IFixExecute
     {
         private readonly Transform _launcher;
         private readonly float _force;
@@ -21,7 +21,7 @@ namespace Asteroids
             _pool = new AmmunitionPool(rootName, prefab, OnTakeFromPool, defaultPoolSize, maxPoolSize, lifeTime);
         }
 
-        public void Execute()
+        public void FixExecute()
         {
             if (!_isReloaded)
             {

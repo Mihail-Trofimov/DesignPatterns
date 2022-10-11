@@ -23,7 +23,7 @@ namespace Asteroids
 
         private Ammunition CreatePooledItem()
         {
-            Ammunition ammo = Object.Instantiate(_prefab);
+            Ammunition ammo = Factory.Create<Ammunition>(_prefab);
             ammo.SetLifeTime(_lifeTime);
             ammo.disableEvent += Release;
             ammo.transform.SetParent(_parent);

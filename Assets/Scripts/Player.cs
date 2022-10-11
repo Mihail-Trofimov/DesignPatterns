@@ -3,7 +3,7 @@ using UnityEngine;
 namespace Asteroids
 {
     [RequireComponent(typeof(Rigidbody2D))]
-    public sealed class Player : Unit
+    public sealed class Player : Unit, IFixExecute
     {
         [SerializeField] private int _maxHealthPoint;
 
@@ -38,7 +38,12 @@ namespace Asteroids
 
         public override void Execute()
         {
-            Weapon.Execute();
+
+        }
+
+        public void FixExecute()
+        {
+            Weapon.FixExecute();
         }
 
     }
