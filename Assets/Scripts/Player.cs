@@ -3,7 +3,7 @@ using UnityEngine;
 namespace Asteroids
 {
     [RequireComponent(typeof(Rigidbody2D))]
-    public sealed class Player : Unit, IFixExecute
+    public sealed class Player : Unit
     {
         [SerializeField] private int _maxHealthPoint;
 
@@ -14,7 +14,6 @@ namespace Asteroids
         [SerializeField] private float _ammunitionAcceleration;
         [SerializeField] private float _weaponReloadTime;
         [SerializeField] private Ammunition _ammunitionPrefab;
-        [SerializeField] private float _ammunitionLifeTime;
 
         public PlayerMovement Movement { get; private set; }
         public Weapon Weapon { get; private set; }
@@ -27,7 +26,7 @@ namespace Asteroids
             PlayerRotation _rotation = new PlayerRotation(transform);
             MoveRigidBodyAcceleration _move = new MoveRigidBodyAcceleration(_rigidBody, _speed, _acceleration);
             Movement = new PlayerMovement(_rotation, _move);
-            Weapon = new Weapon(Constant.NAME_POOL_PLAYER_BLASTER, _launcher, _ammunitionAcceleration, _weaponReloadTime, _ammunitionPrefab, _ammunitionLifeTime);
+            Weapon = new Weapon(Constant.NAME_POOL_PLAYER_BLASTER, _launcher, _ammunitionAcceleration, _weaponReloadTime, _ammunitionPrefab);
             Health = new Health(_maxHealthPoint);
         }
 
@@ -38,12 +37,7 @@ namespace Asteroids
 
         public override void Execute()
         {
-
-        }
-
-        public void FixExecute()
-        {
-            Weapon.FixExecute();
+            Weapon.Execute();
         }
 
     }
