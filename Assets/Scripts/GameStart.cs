@@ -13,16 +13,20 @@ namespace Asteroids
             AsteroidSpawn spawner = reference.SpawnerAsteroid;
             GameController gameController = new GameController(player);
 
-            GameLoop gameLoop = reference.GameLoop;
+            //GameLoop gameLoop = reference.GameLoop;
+            //GameLoop gameLoop = new GameLoop();
 
-            spawner.Initialization(gameLoop);
-            gameLoop.AddExecute(spawner);
+            GameLoopSingleton.AddExecute(spawner);
 
-            gameLoop.AddExecute(input);
-            gameLoop.AddFixExecute(input);
+            GameLoopSingleton.AddExecute(input);
+            GameLoopSingleton.AddFixExecute(input);
 
+<<<<<<< Updated upstream
             gameLoop.AddExecute(player);
             gameLoop.AddFixExecute(player);
+=======
+            GameLoopSingleton.AddExecute(player);
+>>>>>>> Stashed changes
 
         }
     }

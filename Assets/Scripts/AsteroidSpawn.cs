@@ -15,9 +15,9 @@ namespace Asteroids
         private float _timer = 2;
         private ISpawner _spawner;
 
-        public void Initialization(GameLoop loop)
+        public void Awake()
         {
-            _spawner = new SpawnerAsteroid(loop, _prefabsArray, _spawnPointsArray, _targetPointsArray);
+            _spawner = new SpawnerAsteroid(_prefabsArray, _spawnPointsArray, _targetPointsArray);
         }
 
         public void Execute()
