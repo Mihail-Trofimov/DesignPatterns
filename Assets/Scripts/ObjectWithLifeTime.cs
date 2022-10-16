@@ -1,17 +1,16 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Asteroids
 {
-    public abstract class ObjectWithLifeTime<T> : MonoBehaviour where T : MonoBehaviour
+    public abstract class ObjectWithLifeTime<T> : DisabledObject<T> where T: MonoBehaviour
     {
         [SerializeField] private float _lifeTime;
-        public abstract event DisableAction<T> disableEvent;
 
-        public void SetLifeTime(float lifeTime)
+        public float LifeTime
         {
-            _lifeTime = lifeTime;
+            get{ return _lifeTime; }
+            set{ _lifeTime = value; }
         }
 
         private void OnEnable()
@@ -26,11 +25,8 @@ namespace Asteroids
 
         private IEnumerator DisableObjectFromTimer()
         {
-            yield return new WaitForSeconds(_lifeTime);
+            yield return new WaitForSeconds(LifeTime);
             DisableEventInvoke();
         }
-
-        public abstract void DisableEventInvoke();
-
     }
 }

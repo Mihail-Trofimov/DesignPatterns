@@ -6,6 +6,14 @@ namespace Asteroids
     {
         private void Awake()
         {
+            Ammunition prefabBlasterPlayer = Resources.Load<Ammunition>(Constant.PREFAB_AMMUNITION_PLAYER_BLASTER);
+            //Ammunition prefabBlasterPlayer = BuilderFactory.BuidBlaster;
+            const int defaultPoolSize = 20;
+            const int maxPoolSize = 30;
+            Pool<Ammunition> ammunitionPool = new Pool<Ammunition>(Constant.NAME_POOL_PLAYER_BLASTER, prefabBlasterPlayer, defaultPoolSize, maxPoolSize);
+
+            PoolServiceLocator.Add(Constant.NAME_POOL_PLAYER_BLASTER, ammunitionPool);
+
             Reference reference = new Reference();
             Player player = reference.Player;
             Camera camera = reference.MainCamera;
@@ -13,21 +21,18 @@ namespace Asteroids
             AsteroidSpawn spawner = reference.SpawnerAsteroid;
             GameController gameController = new GameController(player);
 
-            //GameLoop gameLoop = reference.GameLoop;
-            //GameLoop gameLoop = new GameLoop();
-
             GameLoopSingleton.AddExecute(spawner);
-
             GameLoopSingleton.AddExecute(input);
             GameLoopSingleton.AddFixExecute(input);
-
-<<<<<<< Updated upstream
-            gameLoop.AddExecute(player);
-            gameLoop.AddFixExecute(player);
-=======
             GameLoopSingleton.AddExecute(player);
->>>>>>> Stashed changes
 
+            ServiceLocator.SetService<IService>(new Service());
+
+        }
+
+        private void Start()
+        {
+            ServiceLocator.Resolve<IService>().Test();
         }
     }
 }

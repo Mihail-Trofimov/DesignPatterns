@@ -1,8 +1,6 @@
-using UnityEngine;
-
 namespace Asteroids
 {
-    public sealed class Health : IDamage
+    public sealed class Health : IHealth
     {
         public int Max { get; }
         public int Current { get; private set; }
@@ -25,7 +23,7 @@ namespace Asteroids
             Current = healthPoint;
         }
 
-        public void Damage(int damage)
+        public void TakeDamage(int damage)
         {
             Current -= damage;
             if (Current <= 0) Demolition();
