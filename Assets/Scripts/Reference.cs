@@ -34,18 +34,6 @@ namespace Asteroids
             }
         }
 
-        //public GameLoop GameLoop
-        //{
-        //    get
-        //    {
-        //        if (_gameLoop == null)
-        //        {
-        //            _gameLoop = Factory.Create<GameLoop>(Constant.PREFAB_GAME_LOOP);
-        //        }
-        //        return _gameLoop;
-        //    }
-        //}
-
         public AsteroidSpawn SpawnerAsteroid
         {
             get

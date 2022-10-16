@@ -2,16 +2,16 @@ using UnityEngine;
 
 namespace Asteroids
 {
-    public abstract class Unit : MonoBehaviour, IDamage, IExecute
+    public abstract class Unit : MonoBehaviour, IHealth, IExecute
     {
         public delegate void Action(Unit unit);
         public abstract event Action destroyEvent;
 
         public Health Health { get; protected set; }
 
-        public void Damage(int damage)
+        public void TakeDamage(int damage)
         {
-            Health.Damage(damage);
+            Health.TakeDamage(damage);
             if (Health.IsDemolition) Demolition();
         }
 
