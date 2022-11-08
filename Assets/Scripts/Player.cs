@@ -13,8 +13,12 @@ namespace Asteroids
         [SerializeField] private Transform _launcher;
         [SerializeField] private float _ammunitionAcceleration;
         [SerializeField] private float _weaponReloadTime;
+<<<<<<< Updated upstream
         [SerializeField] private Ammunition _ammunitionPrefab;
         [SerializeField] private float _ammunitionLifeTime;
+=======
+        [SerializeField] private int _ammunitionLayer;
+>>>>>>> Stashed changes
 
         public PlayerMovement Movement { get; private set; }
         public Weapon Weapon { get; private set; }
