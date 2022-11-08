@@ -16,9 +16,14 @@ namespace Asteroids
             _launcher = launcher;
             _force = force;
             _reloadTime = reloadTime;
+<<<<<<< Updated upstream
             const int defaultPoolSize = 20;
             const int maxPoolSize = 30;
             _pool = new AmmunitionPool(rootName, prefab, OnTakeFromPool, defaultPoolSize, maxPoolSize, lifeTime);
+=======
+            _pool = PoolServiceLocator.Get(rootName);
+            _layer = layer;
+>>>>>>> Stashed changes
         }
 
         public void FixExecute()
